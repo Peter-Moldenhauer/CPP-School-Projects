@@ -1,0 +1,29 @@
+ 
+Project 5.b
+
+Write a class called BankAccount that has a string data member called customerName, a string data member called customerID, 
+and a double data member called customerBalance.  The class should have a constructor that takes two strings and a 
+double (name, ID, balance) and uses them to initialize the data members.  The data members of this class do not need to be set 
+after they are initialized, so this class doesn't need any set methods - therefore the constructor will directly assign values 
+to the data members instead of calling set methods to do it.  The class should have a get method for each data member.  It should 
+have a method called withdraw that takes a double parameter and deducts it from the customer balance (the balance is allowed to be negative).  
+It should have a method called deposit that takes a double parameter and adds it to the current balance.  
+The BankAccount class might be used as follows:
+
+BankAccount account1("Harry Potter", "K4637", 8032.78);
+account1.withdraw(244.0);
+account1.withdraw(3012.58);
+account1.deposit(37.54);
+account1.withdraw(1807.12);
+account1.deposit(500.00);
+double finalBalance = account1.getCustomerBalance();
+
+Your functions should have the following names:
+•	getCustomerName
+•	getCustomerID
+•	getCustomerBalance
+•	withdraw
+•	deposit
+
+The files must be named: BankAccount.hpp and BankAccount.cpp
+ 
