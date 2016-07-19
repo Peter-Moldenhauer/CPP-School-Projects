@@ -1,0 +1,19 @@
+Project 7:
+
+The mode is the value that appears most often in a set of data.  
+Write a function named findMode that takes as parameters an array of int and the size of the array, and returns a vector containing the mode(s).  
+If there is just a single most frequent value, the vector will only contain that one value, but if multiple values tie for maximum frequency, 
+the vector will need to contain all such values.  This includes the case where every number in the array appears only once.  
+Each mode should appear only once in the vector.   The values in the vector that is returned must be in ascending order.   
+If you need to sort a vector, it's similar to sorting an array, but specifying the beginning and end of the vector look a little bit different.  
+If your vector is named result, then it would look like this: "std::sort(result.begin(), result.end());".
+
+The most straightforward approach is to:
+
+1. Iterate (loop) through the array to find out what the highest frequency for any value is without worrying about storing any modes.
+2. Iterate through the array again, this time comparing the counts for each value to the highest frequency that you already found, 
+if the count for a value is the same as the highest frequency, push that value into your results vector.
+
+The file must be named: findMode.cpp
+
+ 
