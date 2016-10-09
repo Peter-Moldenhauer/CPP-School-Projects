@@ -1,7 +1,7 @@
 /********************************************************************************************************
 *Name: Peter Moldenhauer
 *Email: moldenhp@oregonstate.edu
-*Date: 9/28/16
+*Date: 10/8/16
 *Course: CS 162
 *Assignment: Assignment 1
 *Description: This program implements a simulation of Langton's Ant. For the ant, there are a few simple
@@ -23,18 +23,24 @@ int main()
     int numRows, numCols, steps, row, col;
     char ranStart;
     bool getData1 = true;
-
+    bool getData2 = true;
 
     cout << "\n     *** This program will implement a simulation of Langton's Ant. ***     \n" << endl;
+
+    // *** GET BOARD ROWS ***
     while (getData1 == true){
         cout << "Enter the number of rows you want for the starting board size: ";
         cin >> numRows;
         if (numRows > 0){
             getData1 = false;
         }else{
-            cout << "The number of rows must be greater than 0! Try again! " << endl;
+            cout << "The number of rows must be an integer greater than 0! Try again! " << endl;
+            cin.clear();
+            cin.ignore();
         }
     }
+
+    // *** GET BOARD COLUMNS ***
     getData1 = true;
     while (getData1 == true){
         cout << "Enter the number of columns you want for the starting board size: ";
@@ -42,9 +48,13 @@ int main()
         if (numCols > 0){
             getData1 = false;
         }else{
-            cout << "The number of columns must be greater than 0! Try again! " << endl;
+            cout << "The number of columns must be an integer greater than 0! Try again! " << endl;
+            cin.clear();
+            cin.ignore();
         }
     }
+
+    // *** GET NUMBER OF STEPS ***
     getData1 = true;
     while (getData1 == true){
         cout << "Enter the number of steps that you want the ant to take (such as 100, 1000, or 10000): ";
@@ -52,20 +62,27 @@ int main()
         if (steps > 0){
             getData1 = false;
         }else{
-            cout << "The number of steps must be greater than 0! Try again! " << endl;
+            cout << "The number of steps must be an integer greater than 0! Try again! " << endl;
+            cin.clear();
+            cin.ignore();
         }
     }
     getData1 = true;
 
+    // *** GET STARTING LOCATION OF ANT ***
+    while (getData2 == true){
     cout << "Would you like to have a random starting location for the ant? (Y/N): ";
     cin >> ranStart;
 
-
+    // *** IF RANDOM LOCATION ***
     if (ranStart=='Y' || ranStart=='y'){ //generate random row/column numbers if user wishes to use random starting location for ant
          srand(time(0));  //seed the random number with clock time to get a different set of random numbers each time
          row = (rand()% numRows);
          col = (rand()% numCols);
-    }else{
+         getData2 = false;
+
+    // *** IF NOT RANDOM LOCATION ***
+    }else if (ranStart =='n' || ranStart =='N'){
         while (getData1 == true){
             cout << "Enter the row number (starting at row 1) in which you would like the ant to start at: ";
             cin >> row;
@@ -73,7 +90,9 @@ int main()
                 row = row - 1;
                 getData1 = false;
             }else{
-                cout << "Starting row position must be within the specified number of rows! " << endl;
+                cout << "Starting row position must be an integer within the specified number of rows! " << endl;
+                cin.clear();
+                cin.ignore();
             }
         }
         while (getData1 == false){
@@ -83,8 +102,18 @@ int main()
                 col = col - 1;
                 getData1 = true;
             }else{
-                cout << "Starting column position must be within the specified number of columns! " << endl;
+                cout << "Starting column position must be an integer within the specified number of columns! " << endl;
+                cin.clear();
+                cin.ignore();
             }
+        }
+        getData2 = false;
+
+    // *** IF BAD INPUT TO GET RANDOM/NOT RANDOM ***
+    }else{
+        cout << "Please enter either Y or N! " << endl;
+        cin.clear();
+        cin.ignore();
         }
     }
 
@@ -95,8 +124,8 @@ int main()
     cin.get();
 
     //clear the screen
-    cout << "\033[2J\033[1;1H" << endl;
-    //system("CLS");   //used for testing on WINDOWS machine
+    cout <<"\033[2J\033[1;1H";
+    //system("CLS");   Used on WINDOWS MACHINE 
 
     //create board
     char **board = new char*[numRows];
@@ -127,8 +156,8 @@ int main()
     for (int i=steps; i>0; i--){
 
         //clear screen first
-        cout << "\033[2J\033[1;1H" << endl;
-        //system("CLS");
+        cout <<"\033[2J\033[1;1H";
+        //system("CLS");  Used on WINDOWS MACHINE
 
         //if statement - if current color = white then change direction, row and col changes to #, row or col gets incremented, row and col mow changes to *,
         if (theAnt.getCurColor() == ' '){

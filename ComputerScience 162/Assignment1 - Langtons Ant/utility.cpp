@@ -13,7 +13,7 @@ int main()
     /*****************************************************
     //Clear the Screen
 
-    cout << \033[2J\033[1;1H;  //Used in UNIX!
+    cout <<"\033[2J\033[1;1H";  //Used in LINUX!
 
     system("CLS");             //Used in WINDOWS!
     ******************************************************/
@@ -102,7 +102,8 @@ int main()
 
 
     /**********************************************************************************
-    //Validate user input
+    //Validate user input - validates that input is a positive integer
+	//this does not allow letters, characters, negative numbers or zero to be input
 
     bool getData1 = true;
 
@@ -112,7 +113,9 @@ int main()
         if (numRows > 0){
             getData1 = false;
         }else{
-            cout << "The number of rows must be greater than 0! Try again! " << endl;
+            cout << "The number of rows must be an integer greater than 0! Try again! " << endl;
+			cin.clear();
+			cin.ignore();
         }
     }
     *************************************************************************************/
